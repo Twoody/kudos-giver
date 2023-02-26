@@ -1,0 +1,27 @@
+{
+  "name": "playwright-kudos-giver",
+  "version": "0.0.1",
+  "description": "Automate Strava Kudos",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:record": "npx playwright codegen"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twoody"
+  },
+  "author": "Tanner Woody",
+  "license": "MIT",
+  "dependencies": {
+    "@playwright/test": "^1.27.1",
+    "@types/crypto-js": "^4.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.26.0",
+    "eslint-plugin-import": "^2.26.0",
+    "pg": "^8.8.0",
+    "typescript": "^4.8.4"
+  }
+}
