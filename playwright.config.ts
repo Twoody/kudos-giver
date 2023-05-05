@@ -25,7 +25,7 @@ const config: PlaywrightTestConfig = {
       use: {
         browserName: `chromium`,
         channel: `chrome`,
-        baseURL: testConfig[process.env.ENV],
+        baseURL: 'https://strava.com'
         headless: true,
         viewport: { width: 1500, height: 730 },
         ignoreHTTPSErrors: true,
