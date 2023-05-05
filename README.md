@@ -2,8 +2,8 @@
 
 ## Setup
 
-`npm install`
-`npx playwright install`
-`cp .env.example .env`
-<update email and password appropriately>
-`npm run test`
+1. `npm install`
+1. `npx playwright install`
+1. `cp .env.example .env`
+1. <update email and password appropriately>
+1. `npm run test`
