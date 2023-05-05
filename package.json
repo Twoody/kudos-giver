@@ -1,6 +1,6 @@
 {
   "name": "playwright-kudos-giver",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Automate Strava Kudos",
   "main": "index.js",
   "scripts": {

@@ -8,10 +8,10 @@ export class LoginPage {
   }
 
   async navigateToURL(): Promise<void> {
-		await this.page.goto('https://www.strava.com');
+    await this.page.goto('https://www.strava.com');
   }
 
   async loginToApplication(): Promise<void> {
-  	await this.page.click('[data-cy="login_btn"]');
+    await this.page.click('[data-cy="login_btn"]');
   }
 }

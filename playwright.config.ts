@@ -17,7 +17,7 @@ const WIDTH = 1500;
 const config: PlaywrightTestConfig = {
   globalSetup: './src/config/global-setup.ts',
   globalTeardown: './src/config/global-teardown.ts',
-	testMatch: /.*.[jt]s/,
+  testMatch: /.*.[jt]s/,
   maxFailures: parseInt(process.env.MAX_FAILURES) || 5,
   reporter: [
     ['list'],
