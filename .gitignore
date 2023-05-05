@@ -1,0 +1,39 @@
+# Auto generated
+.DS_Store
+html-report*
+playwright-report*
+test-results/
+
+# NPM
+node_modules
+/dist
+
+# Ignore local cache service for assisting in size/time of host deployment
+/.firebase
+
+# Ignore jest test coverage output
+coverage
+
+# local env files
+.env
+.env.local
+.env.*.local
+.firebaserc
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+log
+diff
+out
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

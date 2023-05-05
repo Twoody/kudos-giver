@@ -1,46 +1,63 @@
-import { PlaywrightTestConfig, devices } from '@playwright/test';
-import { testConfig } from './testConfig';
-const ENV = process.env.ENV;
+import { PlaywrightTestConfig } from '@playwright/test';
+import dotenv from 'dotenv';
+import { TRUTHYS } from '@utils/misc';
+
+dotenv.config({ path: '.env' });
+
+const isRecording = TRUTHYS.includes(process.env.RECORD_ALL) ? 'on' : 'retain-on-failure';
+const saveTrace = TRUTHYS.includes(process.env.TRACE_ALL) ? 'on' : 'retain-on-failure';
+const gl = process.env.USE_GL || '';
+const useGL = gl.length ? `--use-gl=${gl}` : '';
+const headless = TRUTHYS.includes(process.env.HEADLESS);
+const slowMo = parseInt(process.env.SLOW_MO, 0) || 0;
+const BROWSER_STATE = '.playwright/users/state.json';
+const HEIGHT = 730;
+const WIDTH = 1500;
 
 const config: PlaywrightTestConfig = {
-
-  //Global Setup to run before all tests
-  globalSetup: `./src/config/global-setup`,
-
-  //Global Teardown to run after all tests
-  globalTeardown: `./src/config/global-teardown`,
-
-  //sets timeout for each test case
-  timeout: 120000,
-
-  //number of retries if test case fails
-  retries: 0,
-
-  //Reporters
-  reporter: [[`html`, { outputFolder: 'html-report', open: 'never' }]],
+  globalSetup: './src/config/global-setup.ts',
+  globalTeardown: './src/config/global-teardown.ts',
+	testMatch: /.*.[jt]s/,
+  maxFailures: parseInt(process.env.MAX_FAILURES) || 5,
+  reporter: [
+    ['list'],
+    [
+      'html',
+      {
+        outputFolder: process.env.REPORT_PATH,
+        open: 'never',
+      },
+    ],
+  ],
+  retries: parseInt(process.env.RETRIES),
+  testDir: './executables/',
+  timeout: parseInt(process.env.TIMEOUT),
 
   projects: [
     {
-      name: `Chrome`,
+      name: 'Chrome',
       use: {
-        browserName: `chromium`,
-        channel: `chrome`,
-        baseURL: 'https://strava.com'
-        headless: true,
-        viewport: { width: 1500, height: 730 },
+        browserName: 'chromium',
+        channel: 'chrome',
+        headless,
+        viewport: { width: WIDTH, height: HEIGHT },
         ignoreHTTPSErrors: true,
-
-        //Artifacts
-        screenshot: `only-on-failure`,
-        video: `retain-on-failure`,
-        trace: `retain-on-failure`,
-
-        //Slows down execution by ms
+        acceptDownloads: true,
+        screenshot: 'only-on-failure',
+        video: isRecording,
+        trace: saveTrace,
+        storageState: BROWSER_STATE,
         launchOptions: {
-          slowMo: 0
-        }
+          args: [
+            useGL,
+          ],
+          slowMo,
+        },
       },
     },
   ],
+  expect: {
+    timeout: parseInt(process.env.TIMEOUT),
+  },
 };
 export default config;

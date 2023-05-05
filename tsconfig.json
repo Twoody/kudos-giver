@@ -1,10 +1,23 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-	 "paths": {
-      "@pages/*":["pageFactory/pageRepository/*"],
-      "@objects/*":["pageFactory/objectRepository/*"],
-      "@lib/*":["lib/*"]
+    "baseUrl": "./",
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist",
+    "strict": true,
+    "types": ["node"],
+    "typeRoots": [ "node_modules/@types"],
+    "paths": {
+      "@constants/*": ["src/constants/*"],
+      "@dotfile/*": [".playwright/*"],
+      "@executables/*": ["executables/*"],
+      "@interfaces": ["src/interfaces.ts"],
+      "@pages/*":["src/pages/*"],
+      "@utils/*": ["src/utils/*"]
     }                                         
-  }
+   },
+
+  "include": [
+    "./.eslintrc.js", 
+    "**/*.ts"
+  ]
 }
