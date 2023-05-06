@@ -12,7 +12,7 @@ const headless = TRUTHYS.includes(process.env.HEADLESS);
 const slowMo = parseInt(process.env.SLOW_MO, 0) || 0;
 const BROWSER_STATE = '.playwright/users/state.json';
 const HEIGHT = 730;
-const WIDTH = 1500;
+const WIDTH = 900;
 
 const config: PlaywrightTestConfig = {
   globalSetup: './src/config/global-setup.ts',
