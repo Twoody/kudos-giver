@@ -8,8 +8,14 @@ test('sanity ', async ({ page }) => {
   console.info('Login: Auth request sent');
   await page.getByRole('button', { name: 'Log In' }).click();
 
+  // Make sure auth is good, and then make sure 20 entries are on the page
   await expect(page).toHaveURL('https://www.strava.com/dashboard');
   console.info('Login: Complete');
+  await page.goto('https://www.strava.com/dashboard?num_entries=20');
+  console.info('Navigate: Ensuring 20 entries');
+
+  // Wait for the last entry
+  await page.waitForSelector('[data-testid="kudos_button"] >> nth=19');
 
   // Scroll to the bottom of the page to get more elements to load
   await page.waitForSelector('div.feed-container');
@@ -18,9 +24,9 @@ test('sanity ', async ({ page }) => {
     feedContainer.scrollTop = feedContainer.scrollHeight;
   });
 
-  await page.waitForSelector("[data-testid='unfilled_kudos']");
-
-  const allUnfilled = await page.getByTestId('unfilled_kudos');
+  const targets = await page.locator('[data-testid="web-feed-entry"]')
+    .filter({ hasNot: page.locator('[data-testid="owners-name"]') });
+  const allUnfilled = await targets.getByTestId('unfilled_kudos');
   const count = await allUnfilled.count();
   console.info(`Found: ${count} kudos to give`);
   for (let i = 0; i < count; i += 1) {
