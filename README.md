@@ -12,6 +12,7 @@ This `access token` might need configured via the strava developer api:
 After the user approves, Strava will redirect to the callback URL specified.
 The callback URL will have an authorization code in the query parameters.
 Use the authorization code to obtain the `access token`:
+
     ```
         POST https://www.strava.com/oauth/token
         {
@@ -23,10 +24,14 @@ Use the authorization code to obtain the `access token`:
     ```
 
 ### Easy console command
+Simply open up the devtools, type this out, and hit enter.
+You will want to click the `x`'s that show up for your activities.
+Pasting code into the console is blocked for some browsers.
+
 ```
 document.querySelectorAll("[data-testid='kudos_button']").forEach(button => {
 if (button.querySelector('[data-testid="unfilled_kudos"]')){
-button.click()
+utton.click()
 }
 });
 ```
