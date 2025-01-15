@@ -13,15 +13,15 @@ After the user approves, Strava will redirect to the callback URL specified.
 The callback URL will have an authorization code in the query parameters.
 Use the authorization code to obtain the `access token`:
 
-    ```
-        POST https://www.strava.com/oauth/token
-        {
-            client_id: YOUR_CLIENT_ID,
-            client_secret: YOUR_CLIENT_SECRET,
-            code: AUTHORIZATION_CODE,
-            grant_type: 'authorization_code'
-        }
-    ```
+```
+POST https://www.strava.com/oauth/token
+{
+    client_id: YOUR_CLIENT_ID,
+    client_secret: YOUR_CLIENT_SECRET,
+    code: AUTHORIZATION_CODE,
+    grant_type: 'authorization_code'
+}
+```
 
 ### Easy console command
 Simply open up the devtools, type this out, and hit enter.
